@@ -1,19 +1,10 @@
 package com.dailycodebuffer.springboot.tutorial.service;
 
-//import com.dailycodebuffer.springboot.tutorial.config.RSA;
 import com.dailycodebuffer.springboot.tutorial.entity.Department;
 import com.dailycodebuffer.springboot.tutorial.repository.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
 import java.util.List;
 import java.util.Objects;
 
@@ -21,16 +12,14 @@ import java.util.Objects;
 public class DepartmentServiceImpl implements DepartmentService {
     @Autowired
     private DepartmentRepository departmentRepository;
-//    @Autowired
-//    private RSA rsa;
-//    RSA rsa = new RSA();
 
-    public DepartmentServiceImpl() throws FileNotFoundException, NoSuchAlgorithmException {
+
+    public DepartmentServiceImpl()  {
     }
 
     @Override
-    public Department saveDepartment(Department department) throws NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException, InvalidKeySpecException, IOException {
-//        department.setDepartmentAddress(rsa.encrypt(department.getDepartmentAddress()));
+    public Department saveDepartment(Department department) {
+
         return departmentRepository.save(department);
     }
 
@@ -40,9 +29,8 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public Department fetchDepartmentById(Long departmentId) throws NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException, InvalidKeySpecException, IOException {
+    public Department fetchDepartmentById(Long departmentId) {
         Department dep =  departmentRepository.findById(departmentId).get();
-//        dep.setDepartmentAddress(rsa.decrypt(dep.getDepartmentAddress()));
         return dep;
 
     }

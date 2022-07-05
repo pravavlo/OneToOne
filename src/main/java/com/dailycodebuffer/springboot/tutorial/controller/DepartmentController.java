@@ -1,7 +1,7 @@
 package com.dailycodebuffer.springboot.tutorial.controller;
 
-import com.dailycodebuffer.springboot.tutorial.entity.Department;
 import com.dailycodebuffer.springboot.tutorial.service.DepartmentService;
+import com.dailycodebuffer.springboot.tutorial.entity.Department;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
