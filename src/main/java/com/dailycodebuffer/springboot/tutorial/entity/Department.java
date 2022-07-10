@@ -1,6 +1,7 @@
 package com.dailycodebuffer.springboot.tutorial.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Department {
@@ -13,6 +14,14 @@ public class Department {
     private String departmentCode;
     @Column(nullable = false, length =3000)
     private String departmentAddress;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "hod", referencedColumnName = "id")
+    private Hod hod;
+
+    public Department() {
+
+    }
 
     public Long getDepartmentId() {
         return departmentId;
@@ -46,14 +55,16 @@ public class Department {
         this.departmentAddress = departmentAddress;
     }
 
-    public Department(Long departmentId, String departmentName, String departmentCode, String departmentAddress) {
+    public Department(Long departmentId, String departmentName, String departmentCode, String departmentAddress, Hod hod) {
         this.departmentId = departmentId;
         this.departmentName = departmentName;
         this.departmentCode = departmentCode;
         this.departmentAddress = departmentAddress;
+        this.hod = hod;
     }
 
-    public Department() {
+    public Department(Hod hod) {
+        this.hod = hod;
     }
 
     @Override
@@ -64,5 +75,13 @@ public class Department {
                 ", departmentCode='" + departmentCode + '\'' +
                 ", departmentAddress='" + departmentAddress + '\'' +
                 '}';
+    }
+
+    public Hod getHod() {
+        return hod;
+    }
+
+    public void setHod(Hod hod) {
+        this.hod = hod;
     }
 }
